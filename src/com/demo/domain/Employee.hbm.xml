@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.demo.domain">
+	<class name="Employee">
+		<id name="id">
+			<generator class="native" />
+		</id>
+		<property name="name" />
+<!--  
+		<discriminator column="type" type="int" />
+-->
+		<many-to-one name="depart" column="depart_id" />
+<!--  
+		<subclass name="Skiller" discriminator-value="1">
+			<property name="skiller" />
+		</subclass>
+		<subclass name="Sales" discriminator-value="2">
+			<property name="sell" />
+		</subclass>
+-->
+
+<!-- 
+ combination
+ 
+ <subclass name="Skill" discriminator-value="1">
+   <property name="skill"/>
+ </subclass>
+ <subclass name="Sales" discriminator-value="2">
+ 	<join table="sales">
+ 		<key column="emp_id"/>
+ 		<property name="sell"/>
+ 	</join>
+ </subclass>
+ -->
+ 
+ 
+ <!-- 
+ <union-subclass name="Skiller" table="skiller" >
+ 	<property name="skill" />
+ </union-subclass>
+ <union-subclass name="Sales" table="sales" >
+ 	<property name="sell" />
+ </union-subclass>
+ -->
+		<joined-subclass name="Skiller" table="skiller">
+			<key column="emp_id" />
+			<property name="skill" />
+		</joined-subclass>
+		<joined-subclass name="Sales" table="sales">
+			<key column="emp_id" />
+			<property name="sell" />
+		</joined-subclass>
+	</class>
+</hibernate-mapping>

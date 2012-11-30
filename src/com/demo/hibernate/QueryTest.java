@@ -5,8 +5,10 @@ import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import com.demo.dao.HibernateUtils;
+import com.demo.domain.Name;
 import com.demo.domain.User;
 
 public class QueryTest {
@@ -15,9 +17,13 @@ public class QueryTest {
 
 		User user = new User();
 		user.setBirthday(new Date());
-		user.setName("name");
+		Name n = new Name();
+		n.setFirstName("first name");
+		n.setLastName("last name");
+		user.setName(n);
+		// user.setName("name");
 		HibernateUtils.add(user);
-		query(user.getName());
+		query(user.getName().getFirstName());
 	}
 
 	static void query(String name) {
@@ -34,6 +40,28 @@ public class QueryTest {
 			for (User user : list) {
 				System.out.println(user.getName());
 			}
+		} finally {
+			if (s != null) {
+				s.close();
+			}
+		}
+	}
+
+	static void addUser(User user) {
+		Session s = null;
+		Transaction tx = null;
+		try {
+			s = HibernateUtils.getSession();
+			Name name = new Name();
+			name.setFirstName("first name");
+			name.setLastName("last name");
+
+			User u = new User();
+			u.setName(name);
+			tx = s.beginTransaction();
+			s.save(u);
+			tx.commit();
+
 		} finally {
 			if (s != null) {
 				s.close();

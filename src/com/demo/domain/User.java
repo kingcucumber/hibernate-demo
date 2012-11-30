@@ -5,7 +5,9 @@ import java.util.Date;
 public class User {
 
 	private int id;
-	private String name;
+//	private String name;
+	
+	private Name name;
 	private Date birthday;
 	
 
@@ -17,16 +19,25 @@ public class User {
 		this.id = id;
 	}
 
-	public String getName() {
+//	public String getName() {
+//		return name;
+//	}
+//
+//	public void setName(String name) {
+//		this.name = name;
+//	}
+
+	
+	public Date getBirthday() {
+		return birthday;
+	}
+
+	public Name getName() {
 		return name;
 	}
 
-	public void setName(String name) {
+	public void setName(Name name) {
 		this.name = name;
-	}
-
-	public Date getBirthday() {
-		return birthday;
 	}
 
 	public void setBirthday(Date birthday) {

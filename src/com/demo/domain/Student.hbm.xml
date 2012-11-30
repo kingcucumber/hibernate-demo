@@ -3,20 +3,16 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping package="com.demo.domain">
-	<class name="User">
+	<class name="Student">
 		<id name="id">
 			<generator class="native" />
 		</id>
 
-	<!-- 
-		<property name="name" unique="true" />
-	 -->
-	 <component name="name">
-	 	<property name="firstName" column="first_name" />
-	 	<property name="lastName" column="last_name" />
-	 </component>	
-		
-		<property name="birthday" />
+		<property name="name" />
+		<set name="teachers" table="teacher_student">
+			<key column="student_id" />
+			<many-to-many class="Teacher" column="teacher_id" />
+		</set>
 
 	</class>
 </hibernate-mapping>
