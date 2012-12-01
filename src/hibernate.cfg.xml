@@ -14,8 +14,11 @@
 		<property name="show_sql">true</property>
 		<property name="format_sql">true</property>
 		<property name="hbm2ddl.auto">create</property>
-
-
+		<property name="cache.use_second_level_cache">true</property>
+		<property name="cache.provider_class">org.hibernate.cache.EhCacheProvider</property>
+		<class-cache usage="read-only" class="com.demo.domain.User"/>
+		
+		
 		<mapping resource="com/demo/domain/User.hbm.xml" />
 		<mapping resource="com/demo/domain/Department.hbm.xml" />
 		<mapping resource="com/demo/domain/Employee.hbm.xml" />
@@ -24,5 +27,8 @@
 		<mapping resource="com/demo/domain/Teacher.hbm.xml" />
 		<mapping resource="com/demo/domain/Student.hbm.xml" />
 
+		<event type="save">
+			<listener class="com.demo.hibernate.SaveListener"/>
+		</event>
 	</session-factory>
 </hibernate-configuration>

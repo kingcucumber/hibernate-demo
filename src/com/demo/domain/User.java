@@ -5,11 +5,19 @@ import java.util.Date;
 public class User {
 
 	private int id;
-//	private String name;
-	
+	// private String name;
+
 	private Name name;
 	private Date birthday;
-	
+	private int ver;
+
+	public int getVer() {
+		return ver;
+	}
+
+	public void setVer(int ver) {
+		this.ver = ver;
+	}
 
 	public int getId() {
 		return id;
@@ -19,15 +27,14 @@ public class User {
 		this.id = id;
 	}
 
-//	public String getName() {
-//		return name;
-//	}
-//
-//	public void setName(String name) {
-//		this.name = name;
-//	}
+	// public String getName() {
+	// return name;
+	// }
+	//
+	// public void setName(String name) {
+	// this.name = name;
+	// }
 
-	
 	public Date getBirthday() {
 		return birthday;
 	}

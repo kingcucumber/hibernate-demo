@@ -10,6 +10,7 @@ import org.hibernate.cfg.Configuration;
 
 public final class HibernateUtils {
 	private static SessionFactory sessionFactory;
+	private static ThreadLocal session = new ThreadLocal();
 
 	private HibernateUtils() {
 	}
@@ -18,6 +19,23 @@ public final class HibernateUtils {
 		Configuration cfg = new Configuration();
 		cfg.configure();// cfg.configure("filename");
 		sessionFactory = cfg.buildSessionFactory();
+	}
+
+	public static Session getThreadLocalSession() {
+		Session s = (Session) session.get();
+		if (s == null) {
+			s = getSession();
+			session.set(s);
+		}
+		return s;
+	}
+
+	public static void closeSession() {
+		Session s = (Session) session.get();
+		if (s != null) {
+			s.close();
+			session.set(null);
+		}
 	}
 
 	public static SessionFactory getSessionFactory() {

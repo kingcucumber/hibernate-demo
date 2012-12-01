@@ -21,5 +21,6 @@
 	<classpathentry kind="lib" path="C:/Work/Library/hibernate/mail.jar"/>
 	<classpathentry kind="lib" path="C:/Work/Library/hibernate/mysql-connector-java-5.1.8-bin.jar"/>
 	<classpathentry kind="lib" path="C:/Work/Library/hibernate/ojdbc14.jar"/>
+	<classpathentry kind="lib" path="C:/Work/Library/servlet-api.jar"/>
 	<classpathentry kind="output" path="src"/>
 </classpath>

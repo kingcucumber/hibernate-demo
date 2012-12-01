@@ -110,4 +110,7 @@ public class UserDaoHibernateImpl implements UserDao {
 		}
 	}
 
+	static void addUser(User user) {
+		HibernateUtils.getThreadLocalSession().save(user);
+	}
 }
